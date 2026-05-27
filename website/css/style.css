@@ -621,35 +621,111 @@ img { max-width: 100%; display: block; }
 .breadcrumb a:hover { color: var(--white); }
 
 /* ── About page ── */
-.about-page-section { padding: 80px 0; background: #fdf8f2; }
+/* ══════════════ ABOUT PAGE ══════════════ */
+.about-page-section { padding: 90px 0; background: #fdf8f2; }
 .about-page-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 64px;
   align-items: center;
 }
-.about-page-text h2 { font-family:var(--font-headings); font-size:clamp(26px,3.5vw,38px); font-weight:300; color:var(--gold); margin-bottom:20px; }
-.about-page-text p  { color:var(--text); line-height:1.8; margin-bottom:16px; }
-.about-page-img { border-radius:8px; overflow:hidden; }
-.about-page-img img { width:100%; display:block; border-radius:8px; }
+.about-eyebrow {
+  font-family: var(--font-headings);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.about-page-text h2 {
+  font-family: var(--font-headings);
+  font-size: clamp(26px,3.5vw,40px);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 22px;
+}
+.about-page-text p  { color: var(--text); line-height: 1.85; margin-bottom: 16px; }
+.about-page-text strong { color: var(--dark); font-weight: 600; }
+.about-page-img { border-radius: 14px; overflow: hidden; box-shadow: 0 18px 54px rgba(27,9,4,0.14); }
+.about-page-img img { width: 100%; display: block; border-radius: 14px; }
 
-.about-values { padding:70px 0; background:#faf8f4; }
-.values-grid {
+/* Vision & Commitment */
+.about-vc-section {
+  padding: 80px 0;
+  background: var(--dark);
+}
+.about-vc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.about-vc-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(149,104,52,0.22);
+  border-radius: 14px;
+  padding: 44px 36px;
+}
+.about-vc-icon { font-size: 38px; margin-bottom: 18px; }
+.about-vc-card h3 {
+  font-family: var(--font-headings);
+  font-size: clamp(20px,2.2vw,26px);
+  font-weight: 300;
+  color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.03em;
+}
+.about-vc-card p {
+  color: rgba(255,255,255,0.75);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* Key Features */
+.about-features-section {
+  padding: 90px 0;
+  background: #faf8f4;
+}
+.about-features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 40px;
+  gap: 28px;
+  margin-top: 48px;
 }
-.value-card {
+.about-feature-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
   background: var(--white);
-  border-radius: 10px;
-  padding: 36px 28px;
-  text-align: center;
+  border-radius: 12px;
+  padding: 28px 24px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s, transform 0.3s;
 }
-.value-card h3 { font-family:var(--font-headings); font-size:18px; font-weight:300; color:var(--dark); margin-bottom:12px; }
-.value-card p  { font-size:14px; color:#666; line-height:1.7; }
-.value-icon { font-size:36px; margin-bottom:16px; }
+.about-feature-item:hover {
+  box-shadow: 0 8px 32px rgba(149,104,52,0.14);
+  transform: translateY(-3px);
+}
+.feature-icon-wrap {
+  font-size: 30px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.about-feature-item h4 {
+  font-family: var(--font-headings);
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+.about-feature-item p {
+  font-size: 13.5px;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+}
 
 /* ── Project page ── */
 .project-intro { padding:80px 0; background:#fdf8f2; }
@@ -786,7 +862,9 @@ img { max-width: 100%; display: block; }
     border-top: 1px solid rgba(255,255,255,0.1);
   }
   .about-grid         { grid-template-columns: 1fr; }
-  .about-page-grid    { grid-template-columns: 1fr; }
+  .about-page-grid         { grid-template-columns: 1fr; }
+  .about-vc-grid           { grid-template-columns: 1fr; }
+  .about-features-grid     { grid-template-columns: 1fr 1fr; }
   .project-intro-grid { grid-template-columns: 1fr; }
   .comfort-grid       { grid-template-columns: 1fr; }
   .features-grid      { grid-template-columns: repeat(2, 1fr); }
