@@ -344,14 +344,77 @@ img { max-width: 100%; display: block; }
   margin-top: 48px;
   text-align: center;
 }
-.travel-map-img {
-  max-width: 700px;
+.map-anim-container {
+  position: relative;
+  display: inline-block;
   width: 100%;
-  margin: 0 auto;
+  max-width: 700px;
+  border-radius: 8px;
+  overflow: hidden;
+  line-height: 0; /* remove phantom gap under image */
+}
+.map-anim-container a { display: block; }
+.travel-map-img {
+  width: 100%;
+  display: block;
   border-radius: 8px;
   transition: opacity 0.2s;
 }
-.travel-map-wrap a:hover .travel-map-img { opacity: 0.85; }
+.map-anim-container:hover .travel-map-img { opacity: 0.88; }
+
+/* ── Animated map car ── */
+.map-car {
+  position: absolute;
+  width: 38px;
+  height: auto;
+  pointer-events: none;
+  z-index: 10;
+  animation: carDrive 13s linear infinite;
+  filter: drop-shadow(0 1px 5px rgba(0,0,0,0.70));
+}
+@keyframes carDrive {
+  /* ① Appear at Darshan Singh Tiraha (SE), facing north */
+  0% {
+    left: 88%; top: 88%;
+    transform: translate(-50%,-50%) rotate(90deg);
+    opacity: 0;
+  }
+  5% {
+    left: 88%; top: 88%;
+    transform: translate(-50%,-50%) rotate(90deg);
+    opacity: 1;
+  }
+  /* ② Drive north to junction */
+  33% {
+    left: 82%; top: 61%;
+    transform: translate(-50%,-50%) rotate(90deg);
+    opacity: 1;
+  }
+  /* ③ Turn west at junction */
+  42% {
+    left: 82%; top: 61%;
+    transform: translate(-50%,-50%) rotate(0deg);
+    opacity: 1;
+  }
+  /* ④ Drive west to Gujral Hills pin */
+  88% {
+    left: 18%; top: 61%;
+    transform: translate(-50%,-50%) rotate(0deg);
+    opacity: 1;
+  }
+  /* ⑤ Fade out at destination */
+  95% {
+    left: 18%; top: 61%;
+    transform: translate(-50%,-50%) rotate(0deg);
+    opacity: 0;
+  }
+  /* ⑥ Snap back to start (invisible) ready for next loop */
+  100% {
+    left: 88%; top: 88%;
+    transform: translate(-50%,-50%) rotate(90deg);
+    opacity: 0;
+  }
+}
 
 /* ══════════════ WHY CHOOSE ══════════════ */
 .why-section {
@@ -670,9 +733,28 @@ img { max-width: 100%; display: block; }
 
 /* ── RERA video in project intro ── */
 .rera-video-wrap {
+  position: relative;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible; /* allow badge to float outside the video boundary */
   box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+/* RERA badge hovering over the content below */
+.rera-float-badge {
+  position: absolute;
+  bottom: -24px;
+  right: 12px;
+  width: 90px;
+  height: auto;
+  z-index: 5;
+  background: transparent;
+  pointer-events: none;
+  mix-blend-mode: multiply;   /* white PNG bg becomes transparent */
+  filter: drop-shadow(0 3px 12px rgba(0,0,0,0.40));
+  animation: badgeFloat 3s ease-in-out infinite alternate;
+}
+@keyframes badgeFloat {
+  from { transform: translateY(0px); }
+  to   { transform: translateY(-6px); }
 }
 
 /* ── Privacy Policy page ── */
