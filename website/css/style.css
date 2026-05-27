@@ -635,13 +635,23 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   background: var(--dark) url('../images/wall-bg.png') top center / cover no-repeat;
-  overflow: hidden;
+  overflow: visible;
   padding-top: 0; /* navbar is transparent; no offset needed */
 }
 .page-banner-overlay {
   position: absolute;
   inset: 0;
   background: rgba(10,4,2,0.25);
+}
+/* Warm cream fade — matches first content section, mirrors live site */
+.page-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent 0%, #fdf0d0 100%);
+  pointer-events: none;
+  z-index: 2;
 }
 .page-banner-content {
   position: relative;
@@ -674,7 +684,7 @@ img { max-width: 100%; display: block; }
 
 /* ── About page ── */
 /* ══════════════ ABOUT PAGE ══════════════ */
-.about-page-section { padding: 90px 0; background: #c6c6c6; }
+.about-page-section { padding: 90px 0; background: #fdf0d0; }
 .about-page-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -813,7 +823,7 @@ img { max-width: 100%; display: block; }
 .amenity-card h4 { font-family:var(--font-headings); font-size:14px; font-weight:300; color:var(--dark); }
 
 /* ── Gallery page ── */
-.gallery-section { padding:80px 0; background:#c6c6c6; }
+.gallery-section { padding:80px 0; background:#fdf0d0; }
 .gallery-grid {
   display:grid;
   grid-template-columns:repeat(2, 1fr);
@@ -872,7 +882,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Privacy Policy page ── */
-.privacy-section { padding: 80px 0; background: #c6c6c6; }
+.privacy-section { padding: 80px 0; background: #fdf0d0; }
 .privacy-content { max-width: 800px; }
 .privacy-content h2 {
   font-family: var(--font-headings);
