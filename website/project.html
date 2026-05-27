@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Gujral Hills Project – RERA-approved plotted development in Ranjhi, Jabalpur. View plot layout and amenities." />
+  <meta name="description" content="Gujral Hills Project – TNCP &amp; RERA-approved plotted development in Ranjhi, Jabalpur. Grand Entrance, Playground, Temple Orchard &amp; more." />
   <title>Project – Gujral Hills</title>
   <link rel="icon" href="images/logo-gold.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/project.css" />
 </head>
 <body>
 
@@ -43,21 +44,86 @@
     </div>
   </section>
 
-  <!-- ═══ PROJECT INTRO ═══ -->
-  <section class="project-intro">
-    <div class="section-container project-intro-grid">
-      <div class="project-intro-text">
-        <h2>Gujral Hills, Ranjhi</h2>
-        <p>A meticulously planned township in Mohania, Ranjhi — offering a peaceful lifestyle with all modern conveniences. Unlike the rest of Ranjhi, Gujral Hills is built to give you a better quality of life without leaving your roots behind.</p>
-        <p>We offer plots ranging from <strong>400 sq. ft. to over 1,000 sq. ft.</strong> along with commercial shops, all within a secure gated community with paved roads, drainage, and reliable utilities.</p>
-        <p>Situated with easy access to the upcoming highway connecting Panagar and Kundam — the future of Jabalpur is right here.</p>
-        <a href="index.html#contact" class="btn-primary">Enquire Now</a>
+  <!-- ═══ JABALPUR INTRO ═══ -->
+  <section class="jabalpur-intro">
+    <!-- Ambient glow orb -->
+    <div class="glow-orb orb-left"></div>
+    <div class="glow-orb orb-right"></div>
+    <div class="section-container jabalpur-grid">
+      <div class="jabalpur-text reveal-up">
+        <p class="section-eyebrow">Projects</p>
+        <h2 class="section-heading gold">Jabalpur</h2>
+        <p>Jabalpur, a city in Madhya Pradesh on the Narmada River, is the third-biggest city in the state and one of India's largest. It's the centre of the state in terms of administration and commerce.</p>
+        <p>The city serves as the judicial capital of Madhya Pradesh as well as the headquarters of the West Central Railway. The famous marble rocks of Bhedaghat tower over the Narmada. Jabalpur was chosen as one of India's first smart cities — locally nicknamed <em>"Sanskardhani"</em> meaning <strong>The Cultural Capital</strong>.</p>
+        <a href="index.html#contact" class="btn-primary" style="margin-top:8px">Enquire Now</a>
       </div>
-      <div class="rera-video-wrap">
-        <video muted autoplay loop playsinline style="display:block;width:100%;height:auto;border-radius:8px;pointer-events:none;">
-          <source src="images/hero-video.mp4" type="video/mp4" />
-        </video>
-        <img src="images/icon-rera.png" alt="TNCP &amp; RERA Approved" class="rera-float-badge" />
+      <div class="jabalpur-visual reveal-up" style="animation-delay:0.15s">
+        <div class="jabalpur-img-wrap">
+          <img src="images/section-bg-1.png" alt="Jabalpur — India's Smart City" />
+          <div class="jabalpur-img-badge">
+            <span class="badge-title">Smart City</span>
+            <span class="badge-sub">Jabalpur, MP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ OUR PROJECT — RENDERS CASCADE ═══ -->
+  <section class="renders-section">
+    <div class="section-container">
+      <p class="section-eyebrow dark center reveal-up">Architectural 3D Renders</p>
+      <h2 class="section-heading dark center reveal-up">Our Project</h2>
+      <div class="renders-cascade">
+
+        <!-- Card 1 — tall left -->
+        <div class="render-card render-tall reveal-up" style="animation-delay:0.05s">
+          <img src="images/plot-3d.png" alt="Grand Entrance" loading="lazy" />
+          <div class="render-overlay">
+            <div class="render-label-wrap">
+              <span class="render-num">01</span>
+              <span class="render-label">Grand Entrance</span>
+            </div>
+          </div>
+          <div class="render-shimmer"></div>
+        </div>
+
+        <!-- Card 2 — top right -->
+        <div class="render-card reveal-up" style="animation-delay:0.12s">
+          <img src="images/gallery-2.png" alt="Playground" loading="lazy" />
+          <div class="render-overlay">
+            <div class="render-label-wrap">
+              <span class="render-num">02</span>
+              <span class="render-label">Playground</span>
+            </div>
+          </div>
+          <div class="render-shimmer"></div>
+        </div>
+
+        <!-- Card 3 — bottom right -->
+        <div class="render-card reveal-up" style="animation-delay:0.2s">
+          <img src="images/aerial.jpg" alt="Temple Orchard" loading="lazy" />
+          <div class="render-overlay">
+            <div class="render-label-wrap">
+              <span class="render-num">03</span>
+              <span class="render-label">Temple Orchard</span>
+            </div>
+          </div>
+          <div class="render-shimmer"></div>
+        </div>
+
+        <!-- Card 4 — full-width bottom -->
+        <div class="render-card render-wide reveal-up" style="animation-delay:0.28s">
+          <img src="images/gallery-1.png" alt="Plot Layout" loading="lazy" />
+          <div class="render-overlay">
+            <div class="render-label-wrap">
+              <span class="render-num">04</span>
+              <span class="render-label">Plot Layout</span>
+            </div>
+          </div>
+          <div class="render-shimmer"></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -73,43 +139,178 @@
     </div>
   </section>
 
-  <!-- ═══ AMENITIES ═══ -->
+  <!-- ═══ AMENITIES INTERACTIVE MAP ═══ -->
+  <section class="amenities-map-section">
+    <!-- Background particles -->
+    <div class="map-particles" aria-hidden="true">
+      <div class="map-particle"></div><div class="map-particle"></div>
+      <div class="map-particle"></div><div class="map-particle"></div>
+      <div class="map-particle"></div><div class="map-particle"></div>
+    </div>
+    <div class="section-container">
+      <p class="section-eyebrow light center reveal-up">Explore</p>
+      <h2 class="section-heading white center reveal-up">Project Amenities</h2>
+      <p class="map-hint reveal-up">Hover the glowing pins to discover each feature</p>
+      <div class="hotspot-map-wrap reveal-up">
+        <img src="images/gallery-1.png" alt="Gujral Hills Amenities Map" class="hotspot-base-img" />
+
+        <!-- Hotspot positions: % coords from live site's image map -->
+        <div class="hotspot-pin" style="left:3.9%;top:94.2%" data-name="Grand Entrance">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip pin-tooltip-right">
+            <span class="tooltip-icon">🏛️</span>
+            <div><strong>Grand Entrance</strong><br><small>Majestic gateway to the township</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:24.2%;top:80.8%" data-name="Shopping Center">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip">
+            <span class="tooltip-icon">🛍️</span>
+            <div><strong>Shopping Center</strong><br><small>Retail &amp; commercial shops</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:93.5%;top:46.7%" data-name="Water Fountain">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip pin-tooltip-left">
+            <span class="tooltip-icon">⛲</span>
+            <div><strong>Water Fountain</strong><br><small>Decorative park centerpiece</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:92.8%;top:32.5%" data-name="Temple">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip pin-tooltip-left">
+            <span class="tooltip-icon">🛕</span>
+            <div><strong>Temple</strong><br><small>Sacred orchard of trees</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:62.5%;top:69.2%" data-name="Play Station">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip">
+            <span class="tooltip-icon">🎡</span>
+            <div><strong>Play Station</strong><br><small>Children's play area</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:68.5%;top:64.4%" data-name="Jogging Track">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip">
+            <span class="tooltip-icon">🏃</span>
+            <div><strong>Jogging Track</strong><br><small>Fitness loop around the colony</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:72.8%;top:81.4%" data-name="Cricket Pitch">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip pin-tooltip-left">
+            <span class="tooltip-icon">🏏</span>
+            <div><strong>Cricket Pitch</strong><br><small>Full-size sports ground</small></div>
+          </div>
+        </div>
+
+        <div class="hotspot-pin" style="left:61.8%;top:81.1%" data-name="Open Gym">
+          <div class="pin-ring"></div>
+          <div class="pin-core"></div>
+          <div class="pin-tooltip">
+            <span class="tooltip-icon">💪</span>
+            <div><strong>Open Gym</strong><br><small>Outdoor fitness station</small></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Amenity chips (legend) -->
+      <div class="amenity-chips reveal-up">
+        <span class="amenity-chip">🏛️ Grand Entrance</span>
+        <span class="amenity-chip">🛍️ Shopping Center</span>
+        <span class="amenity-chip">⛲ Water Fountain</span>
+        <span class="amenity-chip">🛕 Temple</span>
+        <span class="amenity-chip">🎡 Play Station</span>
+        <span class="amenity-chip">🏃 Jogging Track</span>
+        <span class="amenity-chip">🏏 Cricket Pitch</span>
+        <span class="amenity-chip">💪 Open Gym</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TOTAL PLOTS ═══ -->
+  <section class="total-plots-section">
+    <!-- Light radial glow -->
+    <div class="plots-glow"></div>
+    <div class="section-container">
+      <p class="section-eyebrow dark center reveal-up">Availability</p>
+      <h2 class="section-heading dark center reveal-up">Total Plots</h2>
+
+      <!-- Animated counters -->
+      <div class="plots-counters-grid reveal-up">
+        <div class="plot-counter-card general-card">
+          <div class="plot-counter-number plot-counter" data-target="87">0</div>
+          <div class="plot-counter-label">General</div>
+          <div class="plot-counter-bar" style="background:var(--gold)"></div>
+        </div>
+        <div class="plot-counter-card total-card">
+          <div class="plot-counter-number plot-counter" data-target="102">0</div>
+          <div class="plot-counter-label">Total</div>
+          <div class="plot-counter-bar" style="background:var(--dark)"></div>
+        </div>
+        <div class="plot-counter-card lig-card">
+          <div class="plot-counter-number plot-counter" data-target="6">0</div>
+          <div class="plot-counter-label">LIG</div>
+          <div class="plot-counter-bar" style="background:#c8963d"></div>
+        </div>
+        <div class="plot-counter-card ews-card">
+          <div class="plot-counter-number plot-counter" data-target="9">0</div>
+          <div class="plot-counter-label">EWS</div>
+          <div class="plot-counter-bar" style="background:#e8c070"></div>
+        </div>
+      </div>
+
+      <!-- Stacked type bar -->
+      <div class="plots-type-bar-wrap reveal-up">
+        <div class="type-bar-track">
+          <div class="type-bar-segment general-seg" style="width:85.3%" data-label="General · 87">
+            <span class="seg-label">General</span>
+          </div>
+          <div class="type-bar-segment lig-seg" style="width:5.9%" data-label="LIG · 6">
+            <span class="seg-label">LIG</span>
+          </div>
+          <div class="type-bar-segment ews-seg" style="width:8.8%" data-label="EWS · 9">
+            <span class="seg-label">EWS</span>
+          </div>
+        </div>
+        <div class="type-bar-legend">
+          <span><span class="legend-dot" style="background:var(--gold)"></span> General — 87 plots (85%)</span>
+          <span><span class="legend-dot" style="background:#c8963d"></span> LIG — 6 plots (6%)</span>
+          <span><span class="legend-dot" style="background:#e8c070"></span> EWS — 9 plots (9%)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ AMENITIES GRID ═══ -->
   <section class="amenities-section">
     <div class="section-container">
       <h2 class="section-heading dark center">Amenities</h2>
       <div class="amenities-grid">
-        <div class="amenity-card">
-          <img src="images/icon-rera.png" alt="RERA" />
-          <h4>TNCP &amp; RERA Approved</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-sustain.png" alt="Drainage" />
-          <h4>Sewage Treatment Plant</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-connectivity.png" alt="Roads" />
-          <h4>Wide Paved Roads</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-temple.png" alt="Temple" />
-          <h4>Temple &amp; Orchard</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-smart.png" alt="Smart Colony" />
-          <h4>Smart Infrastructure</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-family.png" alt="Play Area" />
-          <h4>Children's Play Area</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-family.png" alt="Gym" />
-          <h4>Open Gym &amp; Jogging Track</h4>
-        </div>
-        <div class="amenity-card">
-          <img src="images/icon-connectivity.png" alt="Highway" />
-          <h4>Highway Connectivity</h4>
-        </div>
+        <div class="amenity-card"><img src="images/icon-rera.png" alt="RERA" /><h4>TNCP &amp; RERA Approved</h4></div>
+        <div class="amenity-card"><img src="images/icon-sustain.png" alt="Drainage" /><h4>Sewage Treatment Plant</h4></div>
+        <div class="amenity-card"><img src="images/icon-connectivity.png" alt="Roads" /><h4>Wide Paved Roads</h4></div>
+        <div class="amenity-card"><img src="images/icon-temple.png" alt="Temple" /><h4>Temple &amp; Orchard</h4></div>
+        <div class="amenity-card"><img src="images/icon-smart.png" alt="Smart Colony" /><h4>Smart Infrastructure</h4></div>
+        <div class="amenity-card"><img src="images/icon-family.png" alt="Play Area" /><h4>Children's Play Area</h4></div>
+        <div class="amenity-card"><img src="images/icon-family.png" alt="Gym" /><h4>Open Gym &amp; Jogging Track</h4></div>
+        <div class="amenity-card"><img src="images/icon-connectivity.png" alt="Highway" /><h4>Highway Connectivity</h4></div>
       </div>
     </div>
   </section>
@@ -175,5 +376,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/project.js"></script>
 </body>
 </html>

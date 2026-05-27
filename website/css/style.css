@@ -109,7 +109,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
   padding: 0 40px;
   box-shadow: none;
-  transition: background 0.35s ease, box-shadow 0.35s ease;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 #navbar.scrolled {
   background: var(--dark);
@@ -119,11 +119,26 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 110px;    /* tall at top — holds the large logo */
   max-width: 1400px;
   margin: 0 auto;
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.nav-logo { height: 50px; width: auto; }
+#navbar.scrolled .nav-container {
+  height: 70px;
+}
+/* Logo: large golden glow at top, shrinks on scroll */
+.nav-logo {
+  height: 90px;
+  width: auto;
+  transition: height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              filter  0.45s ease;
+  filter: drop-shadow(0 0 22px rgba(149,104,52,0.55));
+}
+#navbar.scrolled .nav-logo {
+  height: 50px;
+  filter: drop-shadow(0 0 0px rgba(149,104,52,0));
+}
 
 .nav-links {
   display: flex;
@@ -182,6 +197,7 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   background: var(--dark) url('../images/section-bg-1.png') top center / cover no-repeat;
   overflow: hidden;
+  padding-top: 110px; /* clear the large navbar */
 }
 .hero-video {
   position: absolute;
@@ -610,7 +626,7 @@ img { max-width: 100%; display: block; }
   z-index: 1;
   text-align: center;
   color: var(--white);
-  padding: 60px 20px 40px;
+  padding: 130px 20px 50px; /* extra-top so content clears the large logo navbar */
 }
 .page-banner-content h1 {
   font-family: var(--font-headings);
