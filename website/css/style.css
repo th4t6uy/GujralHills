@@ -177,18 +177,16 @@ img { max-width: 100%; display: block; }
 
 /* ── Hero center logo ── */
 .hero-logo-center {
-  position: absolute;
-  top: 32%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+  display: block;
   pointer-events: none;
   will-change: transform, opacity;
+  margin-bottom: 18px;
 }
 .hero-logo-center img {
-  height: 150px;
+  height: 130px;
   width: auto;
   display: block;
+  margin: 0 auto;
   filter: drop-shadow(0 0 44px rgba(149,104,52,0.90))
           drop-shadow(0 0 18px rgba(149,104,52,0.55));
 }
@@ -692,8 +690,8 @@ img { max-width: 100%; display: block; }
 }
 .about-page-text p  { color: var(--text); line-height: 1.85; margin-bottom: 16px; }
 .about-page-text strong { color: var(--dark); font-weight: 600; }
-.about-page-img { border-radius: 14px; overflow: hidden; box-shadow: 0 18px 54px rgba(27,9,4,0.14); }
-.about-page-img img { width: 100%; display: block; border-radius: 14px; }
+.about-page-img { background: transparent; }
+.about-page-img img { width: 100%; display: block; mix-blend-mode: multiply; }
 
 /* Vision & Commitment */
 .about-vc-section {

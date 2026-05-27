@@ -35,7 +35,7 @@ if (heroLogoCenter) {
     const scale      = 1 - ease * 0.45;       // shrinks as it rises
     heroLogoCenter.style.opacity   = opacity;
     heroLogoCenter.style.transform =
-      `translateX(-50%) translateY(${translateY}px) scale(${scale})`;
+      `translateY(${translateY}px) scale(${scale})`;
   }
   window.addEventListener('scroll', animateHeroLogo, { passive: true });
   animateHeroLogo();
