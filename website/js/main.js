@@ -8,13 +8,17 @@ navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// ── Navbar: shadow on scroll ──
-window.addEventListener('scroll', () => {
-  document.getElementById('navbar').style.boxShadow =
-    window.scrollY > 40
-      ? '0 4px 24px rgba(0,0,0,0.45)'
-      : '0 2px 16px rgba(0,0,0,0.25)';
-});
+// ── Navbar: transparent → solid on scroll ──
+const navbar = document.getElementById('navbar');
+function updateNavbar() {
+  if (window.scrollY > 60) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', updateNavbar);
+updateNavbar(); // run on load
 
 // ── Active nav link on scroll ──
 const sections = document.querySelectorAll('section[id], footer[id]');

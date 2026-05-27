@@ -106,9 +106,14 @@ img { max-width: 100%; display: block; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: var(--dark);
+  background: transparent;
   padding: 0 40px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+  box-shadow: none;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+#navbar.scrolled {
+  background: var(--dark);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.45);
 }
 .nav-container {
   display: flex;
@@ -524,18 +529,18 @@ img { max-width: 100%; display: block; }
 /* ══════════════ INNER PAGE BANNER ══════════════ */
 .page-banner {
   position: relative;
-  min-height: 340px;
+  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--dark) url('../images/wall-bg.png') top center / cover no-repeat;
+  background: var(--dark) url('../images/section-bg-1.png') top center / cover no-repeat;
   overflow: hidden;
-  padding-top: 70px; /* offset navbar */
+  padding-top: 0; /* navbar is transparent; no offset needed */
 }
 .page-banner-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(27,9,4,0.55);
+  background: rgba(20,6,2,0.30);
 }
 .page-banner-content {
   position: relative;
@@ -567,7 +572,7 @@ img { max-width: 100%; display: block; }
 .breadcrumb a:hover { color: var(--white); }
 
 /* ── About page ── */
-.about-page-section { padding: 80px 0; background: var(--white); }
+.about-page-section { padding: 80px 0; background: #fdf8f2; }
 .about-page-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -598,7 +603,7 @@ img { max-width: 100%; display: block; }
 .value-icon { font-size:36px; margin-bottom:16px; }
 
 /* ── Project page ── */
-.project-intro { padding:80px 0; background:var(--white); }
+.project-intro { padding:80px 0; background:#fdf8f2; }
 .project-intro-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -631,7 +636,7 @@ img { max-width: 100%; display: block; }
 .amenity-card h4 { font-family:var(--font-headings); font-size:14px; font-weight:300; color:var(--dark); }
 
 /* ── Gallery page ── */
-.gallery-section { padding:80px 0; background:var(--white); }
+.gallery-section { padding:80px 0; background:#fdf8f2; }
 .gallery-grid {
   display:grid;
   grid-template-columns:repeat(2, 1fr);
@@ -671,7 +676,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* ── Privacy Policy page ── */
-.privacy-section { padding: 80px 0; background: var(--white); }
+.privacy-section { padding: 80px 0; background: #fdf8f2; }
 .privacy-content { max-width: 800px; }
 .privacy-content h2 {
   font-family: var(--font-headings);
