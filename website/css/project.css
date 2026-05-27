@@ -98,114 +98,143 @@
   margin-top: 2px;
 }
 
-/* ══════════════ RENDERS CASCADE ══════════════ */
+/* ══════════════ RENDERS SLIDESHOW ══════════════ */
 .renders-section {
   padding: 80px 0 90px;
   background: var(--white);
   background-image: linear-gradient(180deg, #fff 0%, #faf7f3 100%);
 }
-.section-sub {
-  font-size: 14px;
-  color: #888;
-  margin-top: -12px;
-  margin-bottom: 40px;
-}
-.section-sub.center { text-align: center; }
 
-.renders-cascade {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 360px 300px;
-  gap: 18px;
-  margin-top: 40px;
-}
-
-/* Card 1 spans 2 rows (tall) on the left */
-.render-card.render-tall {
-  grid-row: 1 / 3;
-}
-
-/* Card 4 spans full width */
-.render-card.render-wide {
-  grid-column: 1 / -1;
-  grid-row: unset;
-  height: 320px;
-}
-
-.render-card {
+/* ── Slideshow wrapper ── */
+.renders-slideshow {
   position: relative;
-  border-radius: 14px;
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  border-radius: 16px;
   overflow: hidden;
-  cursor: pointer;
+  margin-top: 44px;
   background: var(--dark);
-  box-shadow: 0 8px 32px rgba(27,9,4,0.14);
+  box-shadow: 0 20px 60px rgba(27,9,4,0.22);
 }
-.render-card img {
+
+/* ── Each slide ── */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.55s ease;
   filter: brightness(0.88) saturate(1.05);
+  transition: transform 8s linear;
 }
-.render-card:hover img {
-  transform: scale(1.07);
-  filter: brightness(0.75) saturate(1.15);
+.slide.active img {
+  transform: scale(1.04);
 }
 
-/* Dark overlay + label */
+/* ── Label overlay ── */
 .render-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(27,9,4,0.75) 100%);
+  background: linear-gradient(180deg, transparent 55%, rgba(27,9,4,0.80) 100%);
   display: flex;
   align-items: flex-end;
-  padding: 22px 24px;
-  transition: background 0.4s ease;
+  padding: 28px 36px;
 }
-.render-card:hover .render-overlay {
-  background: linear-gradient(180deg, transparent 30%, rgba(27,9,4,0.88) 100%);
-}
-
 .render-label-wrap {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 14px;
 }
 .render-num {
   font-family: var(--font-headings);
   font-size: 11px;
   font-weight: 300;
   color: var(--gold);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   opacity: 0.85;
 }
 .render-label {
   font-family: var(--font-headings);
-  font-size: clamp(16px, 2vw, 22px);
+  font-size: clamp(18px, 2.4vw, 28px);
   font-weight: 300;
   color: var(--white);
   letter-spacing: 0.05em;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  transform: translateY(6px);
-  transition: transform 0.4s ease;
-}
-.render-card:hover .render-label {
-  transform: translateY(0);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
 
-/* Shimmer sweep on hover */
+/* Shimmer on active slide */
 .render-shimmer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(255,233,188,0.12) 50%, transparent 60%);
-  transform: translateX(-120%);
-  transition: transform 0s;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,233,188,0.08) 50%, transparent 60%);
   pointer-events: none;
 }
-.render-card:hover .render-shimmer {
-  transform: translateX(120%);
-  transition: transform 0.6s ease;
+
+/* ── Arrow buttons ── */
+.slide-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(149,104,52,0.55);
+  background: rgba(27,9,4,0.55);
+  backdrop-filter: blur(8px);
+  color: var(--gold);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  z-index: 10;
+  padding: 0;
+}
+.slide-arrow:hover {
+  background: rgba(149,104,52,0.75);
+  border-color: var(--gold);
+  color: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+.slide-prev { left: 20px; }
+.slide-next { right: 20px; }
+
+/* ── Dot indicators ── */
+.slide-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+.slide-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, width 0.3s;
+}
+.slide-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  width: 24px;
+  border-radius: 4px;
 }
 
 /* ══════════════ AMENITIES MAP ══════════════ */

@@ -74,10 +74,9 @@
     <div class="section-container">
       <p class="section-eyebrow dark center reveal-up">Architectural 3D Renders</p>
       <h2 class="section-heading dark center reveal-up">Experience the Vision</h2>
-      <div class="renders-cascade">
+      <div class="renders-slideshow reveal-up" id="rendersSlideshow">
 
-        <!-- Card 1 — tall left -->
-        <div class="render-card render-tall reveal-up" style="animation-delay:0.05s">
+        <div class="slide active">
           <img src="images/render-entrance.jpg" alt="Grand Entrance" loading="lazy" />
           <div class="render-overlay">
             <div class="render-label-wrap">
@@ -88,21 +87,19 @@
           <div class="render-shimmer"></div>
         </div>
 
-        <!-- Card 2 — top right -->
-        <div class="render-card reveal-up" style="animation-delay:0.12s">
+        <div class="slide">
           <img src="images/render-layout.jpg" alt="Playground & Jogging Track" loading="lazy" />
           <div class="render-overlay">
             <div class="render-label-wrap">
               <span class="render-num">02</span>
-              <span class="render-label">Playground & Jogging Track</span>
+              <span class="render-label">Playground &amp; Jogging Track</span>
             </div>
           </div>
           <div class="render-shimmer"></div>
         </div>
 
-        <!-- Card 3 — bottom right -->
-        <div class="render-card reveal-up" style="animation-delay:0.2s">
-          <img src="images/render-park.jpg" alt="Temple & Orchard" loading="lazy" />
+        <div class="slide">
+          <img src="images/render-park.jpg" alt="Temple &amp; Orchard" loading="lazy" />
           <div class="render-overlay">
             <div class="render-label-wrap">
               <span class="render-num">03</span>
@@ -112,8 +109,7 @@
           <div class="render-shimmer"></div>
         </div>
 
-        <!-- Card 4 — full-width bottom -->
-        <div class="render-card render-wide reveal-up" style="animation-delay:0.28s">
+        <div class="slide">
           <img src="images/render-temple.jpg" alt="Aerial Plot Layout" loading="lazy" />
           <div class="render-overlay">
             <div class="render-label-wrap">
@@ -122,6 +118,17 @@
             </div>
           </div>
           <div class="render-shimmer"></div>
+        </div>
+
+        <!-- Controls -->
+        <button class="slide-arrow slide-prev" aria-label="Previous slide">&#8249;</button>
+        <button class="slide-arrow slide-next" aria-label="Next slide">&#8250;</button>
+
+        <div class="slide-dots">
+          <span class="slide-dot active" data-index="0"></span>
+          <span class="slide-dot" data-index="1"></span>
+          <span class="slide-dot" data-index="2"></span>
+          <span class="slide-dot" data-index="3"></span>
         </div>
 
       </div>

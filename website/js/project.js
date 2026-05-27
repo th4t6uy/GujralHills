@@ -1,3 +1,53 @@
+/* ── Renders slideshow ── */
+(function () {
+  const ss = document.getElementById('rendersSlideshow');
+  if (!ss) return;
+
+  const slides = ss.querySelectorAll('.slide');
+  const dots   = ss.querySelectorAll('.slide-dot');
+  const prev   = ss.querySelector('.slide-prev');
+  const next   = ss.querySelector('.slide-next');
+  let current  = 0;
+  let timer;
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function startAuto() {
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  function stopAuto() { clearInterval(timer); }
+
+  prev.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+  next.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      stopAuto();
+      goTo(parseInt(dot.dataset.index));
+      startAuto();
+    });
+  });
+
+  ss.addEventListener('mouseenter', stopAuto);
+  ss.addEventListener('mouseleave', startAuto);
+
+  // Keyboard support
+  ss.setAttribute('tabindex', '0');
+  ss.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { stopAuto(); goTo(current - 1); startAuto(); }
+    if (e.key === 'ArrowRight') { stopAuto(); goTo(current + 1); startAuto(); }
+  });
+
+  startAuto();
+})();
+
 /* ── Scroll-reveal observer ── */
 const revealEls = document.querySelectorAll('.reveal-up');
 if (revealEls.length) {
