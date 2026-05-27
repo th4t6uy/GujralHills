@@ -377,84 +377,58 @@ img { max-width: 100%; display: block; }
 }
 .map-anim-container:hover .travel-map-img { opacity: 0.92; }
 
-/* ── Animated map car ── */
-.map-car {
+/* ── Animated road light ── */
+.map-light {
   position: absolute;
-  width: 34px;
-  height: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   pointer-events: none;
   z-index: 10;
-  animation: carDrive 15s linear infinite;
-  /* lighter shadow for white background */
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.45));
+  background: radial-gradient(circle, #fff 0%, #ffe88a 40%, #b87d38 70%, transparent 100%);
+  box-shadow:
+    0 0 4px  2px  rgba(255, 255, 200, 0.95),
+    0 0 10px 5px  rgba(255, 200, 80,  0.75),
+    0 0 22px 10px rgba(149, 104, 52,  0.55),
+    0 0 44px 20px rgba(149, 104, 52,  0.22);
+  animation: lightTrace 15s linear infinite, lightPulse 1.1s ease-in-out infinite;
 }
 
-@keyframes carDrive {
-  /* ① Fade in at south entry of Ranjhi main road diagonal — facing NNW (81°) */
-  0% {
-    left: 92%; top: 90%;
-    transform: translate(-50%,-50%) rotate(81deg);
-    opacity: 0;
-  }
-  4% {
-    left: 92%; top: 90%;
-    transform: translate(-50%,-50%) rotate(81deg);
-    opacity: 1;
-  }
-  /* ② Drive north-northwest up diagonal to Darshan Singh Tiraha roundabout */
-  34% {
-    left: 84%; top: 49%;
-    transform: translate(-50%,-50%) rotate(81deg);
-    opacity: 1;
-  }
-  /* ③ Pause & turn west at DST roundabout */
-  42% {
-    left: 84%; top: 49%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 1;
-  }
-  /* ④ Drive west along Bada Pathar Road → Mastana Chowk */
-  57% {
-    left: 62%; top: 47%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 1;
-  }
-  /* ⑤ Continue west on Mohaniya Road → Ambedkar Park junction */
-  70% {
-    left: 41%; top: 44%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 1;
-  }
-  /* ⑥ Road S-bend (slight south jog near Manegaon) */
-  80% {
-    left: 22%; top: 47%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 1;
-  }
-  /* ⑦ S-bend correction (back north) */
-  83% {
-    left: 19%; top: 45%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 1;
-  }
+@keyframes lightPulse {
+  0%,100% { box-shadow:
+    0 0 4px  2px  rgba(255,255,200,0.95),
+    0 0 10px 5px  rgba(255,200,80, 0.75),
+    0 0 22px 10px rgba(149,104,52, 0.55),
+    0 0 44px 20px rgba(149,104,52, 0.22); }
+  50% { box-shadow:
+    0 0 6px  3px  rgba(255,255,220,1.00),
+    0 0 16px 8px  rgba(255,210,90, 0.90),
+    0 0 32px 14px rgba(149,104,52, 0.70),
+    0 0 58px 26px rgba(149,104,52, 0.30); }
+}
+
+@keyframes lightTrace {
+  /* ① Fade in at south entry of Ranjhi main road diagonal */
+  0%  { left: 92%; top: 90%; transform: translate(-50%,-50%); opacity: 0; }
+  4%  { left: 92%; top: 90%; transform: translate(-50%,-50%); opacity: 1; }
+  /* ② Drive north-northwest to Darshan Singh Tiraha roundabout */
+  34% { left: 84%; top: 49%; transform: translate(-50%,-50%); opacity: 1; }
+  /* ③ Brief pause at roundabout */
+  42% { left: 84%; top: 49%; transform: translate(-50%,-50%); opacity: 1; }
+  /* ④ West along Bada Pathar Road → Mastana Chowk */
+  57% { left: 62%; top: 47%; transform: translate(-50%,-50%); opacity: 1; }
+  /* ⑤ West on Mohaniya Road → Ambedkar Park */
+  70% { left: 41%; top: 44%; transform: translate(-50%,-50%); opacity: 1; }
+  /* ⑥ S-bend south jog near Manegaon */
+  80% { left: 22%; top: 47%; transform: translate(-50%,-50%); opacity: 1; }
+  /* ⑦ S-bend north correction */
+  83% { left: 19%; top: 45%; transform: translate(-50%,-50%); opacity: 1; }
   /* ⑧ Arrive at Gujral Hills red pin */
-  90% {
-    left: 13%; top: 43%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 1;
-  }
+  90% { left: 13%; top: 43%; transform: translate(-50%,-50%); opacity: 1; }
   /* ⑨ Fade out at destination */
-  96% {
-    left: 13%; top: 43%;
-    transform: translate(-50%,-50%) rotate(0deg);
-    opacity: 0;
-  }
-  /* ⑩ Snap back invisible to start position for next loop */
-  100% {
-    left: 92%; top: 90%;
-    transform: translate(-50%,-50%) rotate(81deg);
-    opacity: 0;
-  }
+  96% { left: 13%; top: 43%; transform: translate(-50%,-50%); opacity: 0; }
+  /* ⑩ Snap back invisible to start */
+  100%{ left: 92%; top: 90%; transform: translate(-50%,-50%); opacity: 0; }
 }
 
 /* ══════════════ WHY CHOOSE ══════════════ */
