@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Gujral Hills — Powered by Colonizer Pro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains:
 
-## Available Scripts
+| Folder | Contents |
+|--------|----------|
+| `website/` | Static HTML/CSS/JS public marketing site (Hostinger) |
+| `src/` | **Colonizer Pro** — React management app |
+| `public/` | React app HTML shell |
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Colonizer Pro
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A white-label real estate project management suite for RERA-registered
+plotted development colonizers. Features:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🗺️ **Plot Map** — interactive SVG plot grid with live availability
+- 👥 **CRM** — lead and buyer management
+- 📦 **Inventory** — materials and construction stock tracking
+- 💰 **Finance** — payment tracking and reports
+- 🔐 **Auth** — Supabase email/password login
+- 🌐 **Public Map** — customer-facing plot availability page
 
-### `npm test`
+### Quick setup for a new project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/YOUR_ORG/gujralhills.git
+   cd gujralhills
+   npm install
+   ```
 
-### `npm run build`
+2. **Configure the project** — edit `src/config.js`:
+   ```js
+   projectName:    'Your Colony Name',
+   reraNumber:     'P-XXX-YY-ZZZZ',
+   projectAddress: 'Village, Tehsil, District',
+   whatsapp:       '91XXXXXXXXXX',
+   website:        'yourcolony.in',
+   totalPlots:     120,
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Set up Supabase** — copy `.env.example` to `.env` and fill in credentials:
+   ```bash
+   cp .env.example .env
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Run locally**
+   ```bash
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Website (Hostinger)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Static files in `website/` are deployed to Hostinger via FTP or File Manager.
+The site includes a **"Manage Project"** button linking to the Colonizer Pro login.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Tech Stack
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React 18 · react-scripts (CRA)
+- Supabase (auth + database)
+- DM Sans (Google Fonts)
+- Deployed: Hostinger (website) + Vercel/Netlify (app)
