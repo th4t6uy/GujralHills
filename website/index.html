@@ -13,11 +13,8 @@
 <body>
 
   <!-- ═══ NAVBAR ═══ -->
-  <header id="navbar">
+  <header id="navbar" class="inner-header homepage-nav">
     <div class="nav-container">
-      <a href="#home" class="logo-link">
-        <img src="images/logo-gold.png" alt="Gujral Hills" class="nav-logo" />
-      </a>
       <nav class="nav-links" id="navLinks">
         <a href="#home">HOME</a>
         <a href="about.html">ABOUT</a>
@@ -25,6 +22,9 @@
         <a href="gallery.html">GALLERY</a>
         <a href="#contact">CONTACT</a>
       </nav>
+      <a href="#home" class="logo-link">
+        <img src="images/logo-gold.png" alt="Gujral Hills" class="nav-logo" />
+      </a>
       <div class="nav-right">
         <a href="tel:+919424800188" class="nav-phone">+91 9424800188</a>
         <a href="/app/login" class="nav-manage-btn">Manage Project</a>
@@ -36,6 +36,10 @@
   <!-- ═══ HERO ═══ -->
   <section id="home" class="hero-section">
     <div class="hero-overlay"></div>
+    <!-- Large hero logo — merges into navbar on scroll -->
+    <div class="hero-logo-center" id="heroLogoCenter">
+      <img src="images/logo-gold.png" alt="Gujral Hills" />
+    </div>
     <div class="hero-content">
       <h1 class="hero-title glow">Gujral&nbsp;Hills</h1>
       <h2 class="hero-tagline">Your Dream Home, Our Commitment</h2>

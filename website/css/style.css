@@ -164,6 +164,35 @@ img { max-width: 100%; display: block; }
   filter: drop-shadow(0 0 0px rgba(149,104,52,0));
 }
 
+/* ── Homepage: navbar logo hidden until hero logo merges in ── */
+.homepage-nav .nav-logo {
+  opacity: 0;
+  transition: opacity 0.4s ease,
+              height  0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              filter  0.45s ease;
+}
+.homepage-nav.scrolled .nav-logo {
+  opacity: 1;
+}
+
+/* ── Hero center logo ── */
+.hero-logo-center {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.hero-logo-center img {
+  height: 150px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 44px rgba(149,104,52,0.90))
+          drop-shadow(0 0 18px rgba(149,104,52,0.55));
+}
+
 .nav-links {
   display: flex;
   gap: 36px;

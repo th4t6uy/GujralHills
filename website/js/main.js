@@ -18,7 +18,28 @@ function updateNavbar() {
   }
 }
 window.addEventListener('scroll', updateNavbar);
-updateNavbar(); // run on load
+updateNavbar();
+
+// ── Hero logo → navbar merge animation (homepage only) ──
+const heroLogoCenter = document.getElementById('heroLogoCenter');
+if (heroLogoCenter) {
+  const MERGE_END = 180; // scroll px at which merge is complete
+  function animateHeroLogo() {
+    const progress = Math.min(window.scrollY / MERGE_END, 1);
+    const ease = progress < 0.5
+      ? 2 * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 2) / 2; // easeInOutQuad
+
+    const opacity   = 1 - ease;
+    const translateY = -ease * 110;           // flies upward
+    const scale      = 1 - ease * 0.45;       // shrinks as it rises
+    heroLogoCenter.style.opacity   = opacity;
+    heroLogoCenter.style.transform =
+      `translateX(-50%) translateY(${translateY}px) scale(${scale})`;
+  }
+  window.addEventListener('scroll', animateHeroLogo, { passive: true });
+  animateHeroLogo();
+}
 
 // ── Active nav link on scroll ──
 const sections = document.querySelectorAll('section[id], footer[id]');
