@@ -23,19 +23,34 @@ updateNavbar();
 // ── Hero logo → navbar merge animation (homepage only) ──
 const heroLogoCenter = document.getElementById('heroLogoCenter');
 if (heroLogoCenter) {
-  const MERGE_END = 180; // scroll px at which merge is complete
+  // Recalculate target each time in case of resize
+  function getMergeParams() {
+    const n = document.querySelector('.nav-logo');
+    const h = heroLogoCenter;
+    if (!n || !h) return { travelY: -163, scaleEnd: 0.308, MERGE_END: 220 };
+    const hR = h.getBoundingClientRect();
+    const nR = n.getBoundingClientRect();
+    const heroCY = hR.top + hR.height / 2;
+    const navCY  = nR.top + nR.height / 2;
+    const MERGE_END = Math.round(heroCY * 0.6); // scroll distance
+    const travelY   = Math.round(navCY - (heroCY - MERGE_END));
+    const scaleEnd  = nR.height / hR.height;
+    return { travelY, scaleEnd, MERGE_END };
+  }
+
+  let params = getMergeParams();
+  window.addEventListener('resize', () => { params = getMergeParams(); }, { passive: true });
+
   function animateHeroLogo() {
+    const { travelY, scaleEnd, MERGE_END } = params;
     const progress = Math.min(window.scrollY / MERGE_END, 1);
     const ease = progress < 0.5
       ? 2 * progress * progress
       : 1 - Math.pow(-2 * progress + 2, 2) / 2; // easeInOutQuad
 
-    const opacity   = 1 - ease;
-    const translateY = -ease * 110;           // flies upward
-    const scale      = 1 - ease * 0.45;       // shrinks as it rises
-    heroLogoCenter.style.opacity   = opacity;
+    heroLogoCenter.style.opacity   = 1 - ease;
     heroLogoCenter.style.transform =
-      `translateY(${translateY}px) scale(${scale})`;
+      `translateY(${travelY * ease}px) scale(${1 - (1 - scaleEnd) * ease})`;
   }
   window.addEventListener('scroll', animateHeroLogo, { passive: true });
   animateHeroLogo();
