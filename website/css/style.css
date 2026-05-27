@@ -558,7 +558,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--dark) url('../images/section-bg-1.png') top center / cover no-repeat;
+  background: var(--dark) url('../images/wall-bg.png') top center / cover no-repeat;
   overflow: hidden;
   padding-top: 0; /* navbar is transparent; no offset needed */
 }
