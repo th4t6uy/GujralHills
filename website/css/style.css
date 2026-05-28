@@ -700,9 +700,10 @@ img { max-width: 100%; display: block; }
   font-weight: 300;
   color: var(--gold);
   margin-bottom: 12px;
-  /* Dark stroke traced around each letter — gold readable on both dark mountains
-     and light grey without any background box */
-  -webkit-text-stroke: 2px rgba(10,4,2,0.55);
+  /* Cream fill + dark stroke: lighter warm tone pops on the amber-sky zone
+     where pure #956834 gold blends in; still readable on dark mountains and grey */
+  color: var(--cream);
+  -webkit-text-stroke: 2px rgba(10,4,2,0.60);
   paint-order: stroke fill;
 }
 .page-banner-content p {
