@@ -44,7 +44,7 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--font-base);
   color: var(--text);
-  background: var(--dark);  /* dark fallback kills white flashes between sections */
+  background: var(--white);
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -512,20 +512,21 @@ img { max-width: 100%; display: block; }
 .footer {
   position: relative;
   overflow: hidden;
-  background: transparent; /* no solid colour — ::before provides the full background */
+  background: transparent;
   padding-top: 60px;
 }
-/* Flipped wall-bg.png — grey end faces UP (blends from content), dark mountains at bottom */
-.footer::before {
-  content: '';
+/* Flipped wall-bg.png background via a real div — more reliable than ::before + scaleY */
+.footer-bg {
   position: absolute;
   inset: 0;
   background: url('../images/wall-bg.png') top center / cover no-repeat;
   transform: scaleY(-1);
+  transform-origin: center center;
   z-index: 0;
+  pointer-events: none;
 }
 /* Lift all footer children above the background image */
-.footer > * { position: relative; z-index: 1; }
+.footer > *:not(.footer-bg) { position: relative; z-index: 1; }
 .footer-main-grid {
   display: grid;
   grid-template-columns: 2fr 1.5fr 1fr;
