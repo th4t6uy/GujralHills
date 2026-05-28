@@ -98,3 +98,29 @@ const counterObserver = new IntersectionObserver((entries) => {
 if (counters.length) {
   counterObserver.observe(document.querySelector('.travel-section'));
 }
+
+// ── Contact form ──
+const msgArea  = document.getElementById('c-msg');
+const msgCount = document.getElementById('msgCount');
+if (msgArea && msgCount) {
+  msgArea.addEventListener('input', () => {
+    msgCount.textContent = msgArea.value.length + ' / 180';
+  });
+}
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name    = (document.getElementById('c-name').value    || '').trim();
+    const address = (document.getElementById('c-address').value || '').trim();
+    const phone   = (document.getElementById('c-phone').value   || '').trim();
+    const msg     = (document.getElementById('c-msg').value     || '').trim();
+    if (!name || !address) {
+      alert('Please fill in the required fields (Name & Address).');
+      return;
+    }
+    const text = `Hello Gujral Hills,\n\nName: ${name}\nAddress: ${address}${phone ? '\nPhone: ' + phone : ''}${msg ? '\nMessage: ' + msg : ''}`;
+    window.open('https://wa.me/919424800188?text=' + encodeURIComponent(text), '_blank');
+  });
+}
