@@ -410,23 +410,25 @@ img { max-width: 100%; display: block; }
 }
 .travel-map-wrap {
   margin-top: 48px;
-  text-align: center;
+  /* full-bleed: escape the section-container and span the full viewport */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 .map-anim-container {
   position: relative;
-  display: inline-block;
+  display: block;
   width: 100%;
-  max-width: 700px;
-  border-radius: 10px;
+  max-width: none;
+  border-radius: 0;
   overflow: hidden;
   line-height: 0;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  box-shadow: none;
 }
 .map-anim-container a { display: block; }
 .travel-map-img {
   width: 100%;
   display: block;
-  border-radius: 10px;
+  border-radius: 0;
   transition: opacity 0.2s;
 }
 .map-anim-container:hover .travel-map-img { opacity: 0.92; }
@@ -485,7 +487,16 @@ img { max-width: 100%; display: block; }
 }
 .comfort-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
+}
+.comfort-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(198,198,198,0) 0%, rgba(198,198,198,1) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
 .comfort-grid {
   display: grid;
@@ -519,7 +530,9 @@ img { max-width: 100%; display: block; }
 .footer-bg {
   position: absolute;
   inset: 0;
-  background: url('../images/wall-bg.png') top center / cover no-repeat;
+  /* 100% 100% stretches image to fill footer exactly — guarantees all zones visible:
+     gray at visual top, golden sky in middle, dark mountains at visual bottom */
+  background: url('../images/wall-bg.png') top center / 100% 100% no-repeat;
   transform: scaleY(-1);
   transform-origin: center center;
   z-index: 0;
@@ -531,7 +544,7 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: 2fr 1.5fr 1fr;
   gap: 48px;
-  padding-bottom: 180px; /* extra bottom padding pushes mountains lower — text stays in the light golden zone */
+  padding-bottom: 80px; /* with 100% 100% bg-size, mountains always anchor at footer bottom — reduced padding */
 }
 
 /* Perfect Choice column */
@@ -665,9 +678,18 @@ img { max-width: 100%; display: block; }
     transparent       100%
   );
 }
+.page-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, rgba(198,198,198,0) 0%, rgba(198,198,198,1) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
 .page-banner-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   text-align: center;
   color: var(--white);
   padding: 130px 20px 50px; /* extra-top so content clears the large logo navbar */
@@ -849,6 +871,8 @@ img { max-width: 100%; display: block; }
 
 /* ── CTA strip ── */
 .cta-strip {
+  position: relative;
+  overflow: hidden;
   background:var(--gold);
   padding:50px 0;
   text-align:center;
@@ -866,6 +890,15 @@ img { max-width: 100%; display: block; }
   transition:background 0.2s, color 0.2s;
 }
 .btn-white:hover { background:var(--dark); color:var(--white); }
+.cta-strip::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(198,198,198,0) 0%, rgba(198,198,198,1) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
 
 /* ── RERA video in project intro ── */
 .rera-video-wrap {
