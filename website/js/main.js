@@ -99,6 +99,41 @@ if (counters.length) {
   counterObserver.observe(document.querySelector('.travel-section'));
 }
 
+// ── Timeline album slideshows ──
+document.querySelectorAll('.album-slideshow').forEach(album => {
+  const track   = album.querySelector('.album-track');
+  const slides  = album.querySelectorAll('.album-slide');
+  const dotsEl  = album.querySelectorAll('.album-dot');
+  const counter = album.querySelector('.album-counter');
+  const prev    = album.querySelector('.album-prev');
+  const next    = album.querySelector('.album-next');
+  const total   = slides.length;
+  let cur = 0;
+
+  function go(n) {
+    cur = Math.max(0, Math.min(n, total - 1));
+    track.style.transform = `translateX(-${cur * 100}%)`;
+    dotsEl.forEach((d, i) => d.classList.toggle('active', i === cur));
+    if (counter) counter.textContent = (cur + 1) + ' / ' + total;
+    if (prev) prev.hidden = cur === 0;
+    if (next) next.hidden = cur === total - 1;
+  }
+
+  if (prev) prev.addEventListener('click', () => go(cur - 1));
+  if (next) next.addEventListener('click', () => go(cur + 1));
+  dotsEl.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+  // Touch swipe
+  let sx = 0;
+  track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) go(dx > 0 ? cur - 1 : cur + 1);
+  }, { passive: true });
+
+  go(0); // initialise
+});
+
 // ── Contact form ──
 const msgArea  = document.getElementById('c-msg');
 const msgCount = document.getElementById('msgCount');
