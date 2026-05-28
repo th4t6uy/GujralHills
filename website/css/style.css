@@ -698,8 +698,13 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-headings);
   font-size: clamp(36px, 6vw, 60px);
   font-weight: 300;
-  color: var(--white);
-  margin-bottom: 12px;
+  color: var(--gold);
+  margin-bottom: 16px;
+  /* Cream highlight — gold stays readable on dark mountains AND light grey */
+  display: inline-block;
+  background: rgba(255,233,188,0.82);
+  padding: 6px 32px 10px;
+  border-radius: 5px;
 }
 .page-banner-content p {
   font-size: clamp(13px, 1.8vw, 16px);
@@ -1073,7 +1078,7 @@ img { max-width: 100%; display: block; }
   .page-banner-content {
     padding: 90px 16px 36px;
   }
-  .page-banner-content h1 { font-size: clamp(26px, 7.5vw, 42px); }
+  .page-banner-content h1 { font-size: clamp(26px, 7.5vw, 42px); padding: 5px 20px 8px; }
   .page-banner-content p  { font-size: 12px; letter-spacing: 0.08em; }
 
   /* Comfort section */
