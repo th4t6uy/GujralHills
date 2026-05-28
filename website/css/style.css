@@ -1112,14 +1112,18 @@ img { max-width: 100%; display: block; }
 .contact-form-panel {
   flex: 1;
   padding: 64px 52px;
-  background: var(--cream) url('../images/section-bg-1.png') center / cover no-repeat;
-  background-blend-mode: luminosity;
+  /* Solid dark background — matches info panel, no blend-mode transparency issues */
+  background: #1c0c06 url('../images/section-bg-1.png') center / cover no-repeat;
+  background-blend-mode: overlay;
 }
 .contact-form-heading {
   font-family: var(--font-headings);
   font-size: clamp(20px, 2.5vw, 28px);
   font-weight: 300;
-  color: var(--dark);
+  /* Cream + dark stroke — same treatment as page banner titles */
+  color: var(--cream);
+  -webkit-text-stroke: 1px rgba(10,4,2,0.45);
+  paint-order: stroke fill;
   margin-bottom: 28px;
   letter-spacing: 0.03em;
 }
@@ -1128,7 +1132,7 @@ img { max-width: 100%; display: block; }
   display: block;
   font-size: 11px;
   font-weight: 400;
-  color: rgba(27,9,4,0.70);
+  color: rgba(255,233,188,0.70); /* cream on dark */
   letter-spacing: 0.07em;
   text-transform: uppercase;
   margin-bottom: 5px;
@@ -1137,35 +1141,37 @@ img { max-width: 100%; display: block; }
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(149,104,52,0.20);
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(149,104,52,0.40);
   border-radius: 4px;
   padding: 10px 14px;
   font-family: var(--font-base);
   font-size: 14px;
-  color: var(--dark);
+  color: var(--cream);
   outline: none;
   transition: border-color 0.2s, background 0.2s;
   box-sizing: border-box;
 }
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: rgba(255,233,188,0.30); }
 .contact-form input:focus,
 .contact-form textarea:focus {
   border-color: var(--gold);
-  background: rgba(255,255,255,0.90);
+  background: rgba(255,255,255,0.15);
 }
 .contact-form textarea { resize: vertical; min-height: 96px; }
 .msg-count {
   display: block;
   text-align: right;
   font-size: 11px;
-  color: rgba(27,9,4,0.38);
+  color: rgba(255,233,188,0.35);
   margin-top: 3px;
 }
 .btn-send {
   display: inline-block;
   padding: 12px 40px;
-  background: var(--dark);
-  color: var(--cream);
+  background: var(--gold);
+  color: var(--white);
   font-family: var(--font-headings);
   font-size: 14px;
   font-weight: 300;
@@ -1176,7 +1182,7 @@ img { max-width: 100%; display: block; }
   transition: background 0.2s;
   margin-top: 8px;
 }
-.btn-send:hover { background: var(--gold); }
+.btn-send:hover { background: var(--cream); color: var(--dark); }
 
 /* — Info panel (right) — */
 .contact-info-panel {
