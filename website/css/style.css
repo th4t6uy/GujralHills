@@ -530,7 +530,7 @@ img { max-width: 100%; display: block; }
   display: grid;
   grid-template-columns: 2fr 1.5fr 1fr;
   gap: 48px;
-  padding-bottom: 40px;
+  padding-bottom: 180px; /* extra bottom padding pushes mountains lower — text stays in the light golden zone */
 }
 
 /* Perfect Choice column */
@@ -543,7 +543,7 @@ img { max-width: 100%; display: block; }
   line-height: 1.2;
 }
 .footer-pc-text {
-  color: rgba(255,255,255,0.75);
+  color: rgba(27,9,4,0.80);
   font-size: 14px;
   line-height: 1.8;
   margin-bottom: 24px;
@@ -575,7 +575,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-headings);
   font-size: 18px;
   font-weight: 300;
-  color: var(--white);
+  color: var(--dark);
   margin-bottom: 20px;
   letter-spacing: 0.02em;
 }
@@ -589,8 +589,8 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.contact-block p { color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.7; }
-.contact-block a { color: rgba(255,255,255,0.75); transition: color 0.2s; }
+.contact-block p { color: rgba(27,9,4,0.80); font-size: 13px; line-height: 1.7; }
+.contact-block a { color: rgba(27,9,4,0.80); transition: color 0.2s; }
 .contact-block a:hover { color: var(--gold); }
 
 /* Short Links column */
@@ -600,23 +600,23 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-headings);
   font-size: 15px;
   font-weight: 300;
-  color: var(--white);
+  color: var(--dark);
   margin-bottom: 12px;
 }
 .footer-links-col { display: flex; flex-direction: column; gap: 8px; }
 .footer-links-col a {
   font-size: 13px;
-  color: rgba(255,255,255,0.60);
+  color: rgba(27,9,4,0.70);
   transition: color 0.2s;
 }
 .footer-links-col a:hover { color: var(--gold); }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(27,9,4,0.15);
   padding: 18px 0;
   text-align: center;
 }
-.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.45); }
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.75); }
 
 /* ══════════════ WHATSAPP FAB ══════════════ */
 .whatsapp-fab {
@@ -673,18 +673,18 @@ img { max-width: 100%; display: block; }
 }
 .page-banner-content p {
   font-size: clamp(13px, 1.8vw, 16px);
-  color: rgba(255,255,255,0.75);
+  color: rgba(27,9,4,0.75);
   font-weight: 300;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .breadcrumb {
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
+  color: rgba(27,9,4,0.60);
   margin-top: 10px;
 }
 .breadcrumb a { color: var(--gold); }
-.breadcrumb a:hover { color: var(--white); }
+.breadcrumb a:hover { color: var(--dark); }
 
 /* ── About page ── */
 /* ══════════════ ABOUT PAGE ══════════════ */
