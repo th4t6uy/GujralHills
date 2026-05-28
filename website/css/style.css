@@ -510,9 +510,22 @@ img { max-width: 100%; display: block; }
 
 /* ══════════════ FOOTER ══════════════ */
 .footer {
+  position: relative;
+  overflow: hidden;
   background: var(--dark);
   padding-top: 60px;
 }
+/* Flipped wall-bg.png — gray end faces UP (blends from content), dark gold mountains face DOWN (text area) */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dark) url('../images/wall-bg.png') top center / cover no-repeat;
+  transform: scaleY(-1);
+  z-index: 0;
+}
+/* Lift all footer children above the background image */
+.footer > * { position: relative; z-index: 1; }
 .footer-main-grid {
   display: grid;
   grid-template-columns: 2fr 1.5fr 1fr;
@@ -1045,6 +1058,20 @@ img { max-width: 100%; display: block; }
 
   /* RERA floating badge */
   .rera-float-badge { width: 68px; bottom: -18px; right: 8px; }
+
+  /* ── Footer: center-aligned on mobile ── */
+  .footer-main-grid   { text-align: center; }
+  .footer-col         { align-items: center; }
+  .footer-col-links   { align-items: center; }
+  .footer-links-col   { align-items: center; text-align: center; }
+  .social-row         { justify-content: center; }
+  .footer-logo        { margin: 0 auto 20px; }
+  .contact-block      { text-align: center; }
+  .footer-pc-heading  { text-align: center; }
+  .footer-pc-text     { text-align: center; }
+  .footer-col-title   { text-align: center; }
+  .footer-links-title { text-align: center; }
+  .footer-bottom      { text-align: center; }
 }
 
 /* ── Small phones (≤ 400px) ── */
