@@ -39,12 +39,12 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: var(--font-base);
   color: var(--text);
-  background: var(--white);
+  background: var(--dark);  /* dark fallback kills white flashes between sections */
   line-height: 1.7;
   overflow-x: hidden;
 }
@@ -244,7 +244,8 @@ img { max-width: 100%; display: block; }
 /* ══════════════ HERO ══════════════ */
 .hero-section {
   position: relative;
-  min-height: 1080px;
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height — accounts for mobile browser chrome */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -900,42 +901,163 @@ img { max-width: 100%; display: block; }
 .privacy-updated { font-size: 13px; color: #999; margin-top: 48px; }
 
 /* ══════════════ RESPONSIVE ══════════════ */
+
+/* ── Tablet (960px) ── */
 @media (max-width: 960px) {
   .nav-links, .nav-phone { display: none; }
   .hamburger { display: block; }
+
+  /* Dropdown menu */
   .nav-links.open {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 70px; left: 0; right: 0;
+    top: 72px; left: 0; right: 0;
     background: var(--dark);
-    padding: 20px 40px;
-    gap: 18px;
+    padding: 20px 32px 28px;
+    gap: 20px;
     border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 999;
   }
-  .about-grid         { grid-template-columns: 1fr; }
-  .about-page-grid         { grid-template-columns: 1fr; }
-  .about-vc-grid           { grid-template-columns: 1fr; }
-  .about-features-grid     { grid-template-columns: 1fr 1fr; }
-  .project-intro-grid { grid-template-columns: 1fr; }
-  .comfort-grid       { grid-template-columns: 1fr; }
-  .features-grid      { grid-template-columns: repeat(2, 1fr); }
-  .values-grid        { grid-template-columns: repeat(2, 1fr); }
-  .amenities-grid     { grid-template-columns: repeat(2, 1fr); }
-  .gallery-grid       { grid-template-columns: 1fr; }
-  .footer-main-grid   { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .nav-links.open a { font-size: 15px; padding: 4px 0; }
+
+  /* Navbar height reduction */
+  .nav-container { height: 72px; }
+  .nav-logo { height: 54px; }
+  .inner-header .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    column-gap: 0;
+  }
+  .inner-header .nav-logo { height: 54px; }
+  .inner-header .nav-links { justify-self: auto; }
+  .inner-header .nav-right  { justify-self: auto; }
+  .inner-header.scrolled .nav-container { height: 60px; }
+  .inner-header.scrolled .nav-logo { height: 44px; }
+  #navbar.scrolled .nav-container { height: 60px; }
+  #navbar.scrolled .nav-logo { height: 44px; }
+
+  /* Hero logo */
+  .hero-logo-center img { height: 220px; }
+
+  /* Grids → single column or 2-col */
+  .about-grid             { grid-template-columns: 1fr; }
+  .about-page-grid        { grid-template-columns: 1fr; }
+  .about-vc-grid          { grid-template-columns: 1fr; }
+  .about-features-grid    { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .project-intro-grid     { grid-template-columns: 1fr; }
+  .comfort-grid           { grid-template-columns: 1fr; }
+  .features-grid          { grid-template-columns: repeat(2, 1fr); }
+  .values-grid            { grid-template-columns: repeat(2, 1fr); }
+  .amenities-grid         { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid           { grid-template-columns: 1fr; }
+  .footer-main-grid       { grid-template-columns: 1fr 1fr; gap: 32px; }
   .footer-col:first-child { grid-column: 1 / -1; }
-  .hero-section { min-height: 700px; }
+
+  /* Sections */
+  .about-section          { padding: 60px 0; }
+  .yt-section             { padding: 50px 0; }
+  .travel-section         { padding: 60px 0; }
+  .why-section            { padding: 60px 0; }
+  .comfort-section        { padding: 70px 0; }
+  .about-page-section     { padding: 60px 0; }
+  .about-vc-section       { padding: 60px 0; }
+  .about-features-section { padding: 60px 0; }
+  .gallery-section        { padding: 60px 0; }
+  .privacy-section        { padding: 60px 0; }
+
+  /* Page banner */
+  .page-banner { min-height: 340px; }
+  .page-banner-content { padding: 110px 24px 50px; }
 }
 
+/* ── Mobile (600px) ── */
 @media (max-width: 600px) {
-  #navbar { padding: 0 20px; }
-  .features-grid { grid-template-columns: 1fr; }
-  .travel-grid   { grid-template-columns: 1fr; }
+  html { font-size: 15px; }        /* base size — prevents iOS zoom on inputs */
+  #navbar { padding: 0 16px; }
+
+  /* Hero — fills screen, content scaled down */
+  .hero-section { padding-top: 72px; }
+  .hero-logo-center img { height: 160px; }
+  .hero-title {
+    font-size: clamp(28px, 9vw, 52px);
+    letter-spacing: 0.08em;
+  }
+  .hero-tagline {
+    font-size: clamp(11px, 3.2vw, 16px);
+    letter-spacing: 0.14em;
+  }
+  .hero-subtitle { font-size: 13px; margin-bottom: 28px; }
+  .hero-content  { padding: 32px 20px 48px; }
+  .btn-explore   { padding: 13px 36px; font-size: 14px; }
+
+  /* Section headings */
+  .section-heading { font-size: clamp(22px, 6.5vw, 32px); margin-bottom: 18px; }
+
+  /* Counters */
   .counter { font-size: 52px; }
-  .hero-title   { font-size: 42px; }
-  .hero-tagline { font-size: 18px; }
-  .hero-section { min-height: 600px; }
-  .footer-main-grid { grid-template-columns: 1fr; }
+  .travel-grid { grid-template-columns: 1fr; gap: 16px; }
+  .travel-card { padding: 28px 16px; }
+
+  /* Feature cards */
+  .features-grid  { grid-template-columns: 1fr; }
+  .feature-card   { padding: 28px 20px; }
+
+  /* Amenities */
+  .amenities-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .amenity-card   { padding: 20px 14px; }
+  .amenity-card img { width: 40px; height: 40px; }
+
+  /* About page features */
+  .about-features-grid { grid-template-columns: 1fr; }
+  .about-feature-item  { padding: 22px 18px; }
+
+  /* Page banner */
+  .page-banner { min-height: 280px; }
+  .page-banner-content {
+    padding: 90px 16px 36px;
+  }
+  .page-banner-content h1 { font-size: clamp(26px, 7.5vw, 42px); }
+  .page-banner-content p  { font-size: 12px; letter-spacing: 0.08em; }
+
+  /* Comfort section */
   .comfort-grid { grid-template-columns: 1fr; text-align: center; }
+  .comfort-cta  { justify-content: center; margin-top: 28px; }
+
+  /* Footer */
+  .footer-main-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-col:first-child { grid-column: auto; }
+  .footer-logo { height: 72px; }
+  .footer { padding-top: 48px; }
+
+  /* Jabalpur (project page) */
+  .jabalpur-intro { padding: 70px 0 80px; }
+  .jabalpur-text-wrap { padding: 0 4px; }
+
+  /* WhatsApp FAB */
+  .whatsapp-fab { bottom: 18px; right: 18px; width: 52px; height: 52px; }
+  .whatsapp-fab svg { width: 26px; height: 26px; }
+
+  /* Vision / commitment cards */
+  .about-vc-card { padding: 32px 24px; }
+
+  /* RERA floating badge */
+  .rera-float-badge { width: 68px; bottom: -18px; right: 8px; }
+}
+
+/* ── Small phones (≤ 400px) ── */
+@media (max-width: 400px) {
+  .hero-logo-center img { height: 130px; }
+  .hero-title { font-size: 8.5vw; letter-spacing: 0.06em; }
+  .hero-tagline { font-size: 10px; letter-spacing: 0.10em; }
+  .section-container { width: 94%; }
+  .amenities-grid { grid-template-columns: 1fr; }
+  .counter { font-size: 44px; }
+}
+
+/* Hide Manage Project button on all mobiles — WhatsApp FAB handles conversion */
+@media (max-width: 600px) {
+  .nav-manage-btn { display: none; }
 }
