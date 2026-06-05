@@ -5,11 +5,13 @@ import PlotMap from './PlotMap';
 import CRM from './CRM';
 import Inventory from './Inventory';
 import Finance from './Finance';
+import Attendance from './Attendance';
 
 const TABS = [
   { id: 'dash', label: '🏠', full: 'Dashboard' },
   { id: 'map',  label: '🗺️', full: 'Plots' },
   { id: 'crm',  label: '👥', full: 'CRM' },
+  { id: 'att',  label: '🕐', full: 'Attendance' },
   { id: 'inv',  label: '📦', full: 'Stock' },
   { id: 'fin',  label: '💰', full: 'Finance' },
 ];
@@ -90,6 +92,7 @@ export default function Dashboard({ session }) {
         {tab === 'dash' && <DashHome session={session} />}
         {tab === 'map'  && <PlotMap />}
         {tab === 'crm'  && <CRM />}
+        {tab === 'att'  && <Attendance session={session} />}
         {tab === 'inv'  && <Inventory />}
         {tab === 'fin'  && <Finance />}
       </div>

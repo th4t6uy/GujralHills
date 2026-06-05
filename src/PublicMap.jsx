@@ -124,6 +124,7 @@ export default function PublicMap() {
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     async function fetchPlots() {
@@ -157,38 +158,42 @@ export default function PublicMap() {
   const selStatus = sel ? (plots[sel.id] || 'available') : 'available';
   const isAvailable = sel && ['available', 'founder'].includes(selStatus);
 
-  return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc', fontFamily: "'DM Sans', sans-serif" }}>
-      {/* Header */}
-      <div style={{ background: '#1a2744', padding: '14px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div>
-          <div style={{ color: '#fff', fontWeight: 900, fontSize: 18 }}>{config.projectName}</div>
-          <div style={{ color: '#93c5fd', fontSize: 11 }}>RERA {config.reraNumber} · {config.projectAddress}</div>
-        </div>
-        <a href="/dashboard" style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', padding: '6px 12px', borderRadius: 8, fontSize: 11, fontWeight: 600, textDecoration: 'none' }}>Staff Login</a>
-      </div>
+  const availableCount = PLOT_POSITIONS.filter(p => !plots[p.id] || plots[p.id] === 'available').length;
+  const totalCount = PLOT_POSITIONS.length;
 
-      {/* Legend */}
-      <div style={{ display: 'flex', gap: 10, padding: '8px 14px', flexWrap: 'wrap', borderBottom: '1px solid #e5e7eb', background: '#fff' }}>
-        {Object.entries(STATUS_CFG).map(([k, v]) => (
-          <div key={k} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-            <div style={{ width: 12, height: 12, borderRadius: 3, background: v.color, border: `1.5px solid ${v.border}` }} />
-            <span style={{ fontSize: 11, color: '#374151', fontWeight: 500 }}>{v.label}: {Object.values(plots).filter(s => s === k).length || (k === 'available' ? PLOT_POSITIONS.length - Object.keys(plots).length : 0)}</span>
-          </div>
-        ))}
+  return (
+    <div style={{ minHeight: '100vh', background: '#fff', fontFamily: "'DM Sans', sans-serif" }}>
+      {/* Compact toggle bar only */}
+      <div style={{ background: '#fff', borderBottom: '1px solid #e5e7eb', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', position: 'sticky', top: 0, zIndex: 50 }}>
+        <button onClick={() => setFilter('all')}
+          style={{ padding: '5px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, cursor: 'pointer', border: filter === 'all' ? 'none' : '1.5px solid #d1d5db', background: filter === 'all' ? '#1a2744' : '#fff', color: filter === 'all' ? '#fff' : '#374151' }}>
+          All ({totalCount})
+        </button>
+        <button onClick={() => setFilter('available')}
+          style={{ padding: '5px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, cursor: 'pointer', border: filter === 'available' ? 'none' : '1.5px solid #16a34a', background: filter === 'available' ? '#16a34a' : '#fff', color: filter === 'available' ? '#fff' : '#16a34a' }}>
+          ● Available ({availableCount})
+        </button>
+        {Object.entries(STATUS_CFG).filter(([k]) => k !== 'available').map(([k, v]) => {
+          const count = Object.values(plots).filter(s => s === k).length;
+          if (count === 0) return null;
+          return (
+            <button key={k} onClick={() => setFilter(k)}
+              style={{ padding: '5px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, cursor: 'pointer', border: filter === k ? 'none' : `1.5px solid ${v.border}`, background: filter === k ? v.border : '#fff', color: filter === k ? '#fff' : v.border }}>
+              ● {v.label} ({count})
+            </button>
+          );
+        })}
+        <a href="/dashboard" style={{ marginLeft: 'auto', fontSize: 10, color: '#9ca3af', textDecoration: 'none' }}>Staff ↗</a>
       </div>
 
       {/* Map */}
       {loading ? (
         <div style={{ textAlign: 'center', padding: 60, color: '#6b7280' }}>Loading plot map...</div>
       ) : (
-        <div style={{ overflowX: 'auto', padding: 16 }}>
-          <div style={{ position: 'relative', width: 800, height: 450, background: 'linear-gradient(135deg, #e8f4e8 0%, #d4e8d4 100%)', borderRadius: 12, margin: '0 auto' }}>
-            {/* Road labels */}
-            <div style={{ position: 'absolute', top: 8, left: 8, background: 'rgba(255,255,255,0.8)', borderRadius: 4, padding: '2px 8px', fontSize: 9, fontWeight: 700, color: '#374151' }}>9M WIDE ROAD →</div>
-            <div style={{ position: 'absolute', top: 8, right: 80, background: 'rgba(255,255,255,0.8)', borderRadius: 4, padding: '2px 8px', fontSize: 9, fontWeight: 700, color: '#374151' }}>7.5M ROAD</div>
-            <div style={{ position: 'absolute', top: 80, left: 8, background: 'rgba(34,197,94,0.3)', borderRadius: 4, padding: '2px 8px', fontSize: 9, fontWeight: 700, color: '#166534' }}>PARK & PLAY</div>
-            {PLOT_POSITIONS.map(p => {
+        <div style={{ overflowX: 'auto', padding: '8px 0' }}>
+          <div style={{ position: 'relative', width: 800, height: 450, background: 'transparent', margin: '0 auto', overflow: 'hidden' }}>
+            <img src="/site-plan.png" alt="Site Plan" onError={e => { e.target.src = '/render-layout.jpg'; }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'fill', opacity: 1, pointerEvents: 'none', userSelect: 'none' }} />
+            {PLOT_POSITIONS.filter(p => filter === 'all' || (plots[p.id] || 'available') === filter).map(p => {
               const status = plots[p.id] || 'available';
               const cfg = STATUS_CFG[status] || STATUS_CFG.available;
               const isSelected = selected === p.id;
@@ -198,9 +203,9 @@ export default function PublicMap() {
                   style={{
                     position: 'absolute', left: p.x, top: p.y, width: p.w, height: p.h,
                     background: cfg.color, border: `2px solid ${isSelected ? '#fff' : cfg.border}`,
-                    borderRadius: 4, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    borderRadius: 3, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 7, fontWeight: 800, color: '#fff', textShadow: '0 1px 2px rgba(0,0,0,0.5)',
-                    boxShadow: isSelected ? '0 0 0 3px #1a2744, 0 0 0 5px #fff' : '0 1px 3px rgba(0,0,0,0.2)',
+                    boxShadow: isSelected ? '0 0 0 3px #1a2744, 0 0 0 5px #fff' : '0 1px 2px rgba(0,0,0,0.15)',
                     transform: isSelected ? 'scale(1.2)' : 'scale(1)', zIndex: isSelected ? 10 : 1,
                     transition: 'all 0.15s',
                   }}>
