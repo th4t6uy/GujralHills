@@ -192,7 +192,10 @@ export default function PublicMap() {
       ) : (
         <div style={{ overflowX: 'auto', padding: '8px 0' }}>
           <div style={{ position: 'relative', width: 800, height: 450, background: 'transparent', margin: '0 auto', overflow: 'hidden' }}>
-            <img src="/site-plan.png" alt="Site Plan" onError={e => { e.target.src = '/render-layout.jpg'; }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'fill', opacity: 1, pointerEvents: 'none', userSelect: 'none' }} />
+            <picture style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+              <source srcSet="/site-plan.webp" type="image/webp" />
+              <img src="/site-plan.png" alt="Site Plan" style={{ width: '100%', height: '100%', objectFit: 'fill', display: 'block', pointerEvents: 'none', userSelect: 'none' }} />
+            </picture>
             {PLOT_POSITIONS.filter(p => filter === 'all' || (plots[p.id] || 'available') === filter).map(p => {
               const status = plots[p.id] || 'available';
               const cfg = STATUS_CFG[status] || STATUS_CFG.available;

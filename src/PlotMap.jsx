@@ -159,7 +159,10 @@ export default function PlotMap() {
       </div>
       <div style={{ overflowX: 'auto', marginBottom: 14 }}>
         <div style={{ position: 'relative', width: 800, height: 450, background: 'transparent', borderRadius: 12, overflow: 'hidden' }}>
-          <img src="/site-plan.png" alt="Site Plan" onError={e => { e.target.src = '/render-layout.jpg'; }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'fill', opacity: 1, pointerEvents: 'none', userSelect: 'none' }} />
+          <picture style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+            <source srcSet="/site-plan.webp" type="image/webp" />
+            <img src="/site-plan.png" alt="Site Plan" style={{ width: '100%', height: '100%', objectFit: 'fill', display: 'block', pointerEvents: 'none', userSelect: 'none' }} />
+          </picture>
           <div style={{ position: 'absolute', top: 8, left: 8, background: 'rgba(255,255,255,0.8)', borderRadius: 4, padding: '2px 8px', fontSize: 9, fontWeight: 700 }}>9M WIDE ROAD →</div>
           {PLOT_POSITIONS.filter(p => filter === 'all' || (plots[p.id]?.status || 'available') === filter).map(p => {
             const status = plots[p.id]?.status || 'available';
