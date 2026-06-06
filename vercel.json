@@ -1,6 +1,9 @@
 {
-  "framework": "create-react-app",
-  "buildCommand": "DISABLE_ESLINT_PLUGIN=true npm run build",
+  "framework": null,
+  "buildCommand": "DISABLE_ESLINT_PLUGIN=true npm run build && mv build/index.html build/app.html && cp -R website/css website/js website/images website/fonts build/ && cp website/*.html build/",
   "outputDirectory": "build",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/map", "destination": "/app.html" },
+    { "source": "/dashboard", "destination": "/app.html" }
+  ]
 }
