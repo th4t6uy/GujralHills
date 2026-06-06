@@ -10,6 +10,8 @@
 
 # production
 /build
+/preview-build
+website/.claude
 
 # misc
 .DS_Store
