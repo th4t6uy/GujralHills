@@ -100,6 +100,9 @@ img { max-width: 100%; display: block; }
   transition: background 0.2s;
 }
 .btn-explore:hover { background: #7a5228; }
+.hero-cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 4px; }
+.btn-explore.btn-outline { background: transparent; color: var(--gold); border: 2px solid var(--gold); padding: 12px 46px; }
+.btn-explore.btn-outline:hover { background: var(--gold); color: var(--white); }
 
 /* ══════════════ NAVBAR ══════════════ */
 #navbar {
@@ -657,43 +660,39 @@ img { max-width: 100%; display: block; }
 .whatsapp-fab svg { width: 30px; height: 30px; }
 
 /* ══════════════ INNER PAGE BANNER ══════════════ */
+/* wall-bg.png is 2032×1418 — its bottom ~55% is white pixels (not transparent).
+   We display the image at 100% width / auto height so no cropping occurs.
+   The hero height is set to where the image is already white (~32 vw), so
+   overflow:hidden clips in the white zone → seamless join with white content below. */
 .page-banner {
   position: relative;
-  min-height: 420px;
+  min-height: clamp(340px, 32vw, 620px);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--dark) url('../images/wall-bg.png') top center / cover no-repeat;
+  background: #1a0904 url('../images/wall-bg.png') top center / 100% auto no-repeat;
   overflow: hidden;
-  padding-top: 0; /* navbar is transparent; no offset needed */
+  padding-top: 0;
 }
 .page-banner-overlay {
   position: absolute;
   inset: 0;
-  /* Gradient — dark only at top for title contrast, fully transparent at bottom
-     so the image's natural grey edge blends into the content section below */
+  /* Darkens only the upper half where the nav & title sit; fully transparent
+     by the mountain zone so the image's own colours show through */
   background: linear-gradient(
     to bottom,
-    rgba(10,4,2,0.40) 0%,
-    rgba(10,4,2,0.10) 55%,
-    transparent       100%
+    rgba(10,4,2,0.55) 0%,
+    rgba(10,4,2,0.10) 45%,
+    transparent       70%
   );
 }
-.page-banner::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 220px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.18) 55%, rgba(255,255,255,0.42) 100%);
-  z-index: 2;
-  pointer-events: none;
-}
+
 .page-banner-content {
   position: relative;
   z-index: 3;
   text-align: center;
   color: var(--white);
-  padding: 130px 20px 50px; /* extra-top so content clears the large logo navbar */
+  padding: 110px 20px 40px;
 }
 .page-banner-content h1 {
   font-family: var(--font-headings);
@@ -833,6 +832,7 @@ img { max-width: 100%; display: block; }
 
 /* ── Project page ── */
 .project-intro { padding:80px 0; background:#fdf8f2; }
+.project-intro .section-container { max-width: 92vw; width: 92vw; }
 .project-intro-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -842,8 +842,8 @@ img { max-width: 100%; display: block; }
 .project-intro-text h2 { font-family:var(--font-headings); font-size:clamp(26px,3.5vw,38px); font-weight:300; color:var(--gold); margin-bottom:20px; }
 .project-intro-text p  { color:var(--text); line-height:1.8; margin-bottom:16px; }
 
-/* SEO overview text block */
-.project-seo-text { max-width: 820px; }
+/* SEO overview text block — full width */
+.project-seo-text { max-width: none; }
 .project-seo-text p {
   color: var(--text);
   font-size: 15px;
@@ -1272,15 +1272,10 @@ img { max-width: 100%; display: block; }
 }
 .map-open-btn:hover { background: var(--white); }
 
-/* ── Page-specific banner bottom transitions ── */
-/* Project page: first section is #fdf8f2 (warm near-white) */
-.page-project .page-banner::after {
-  background: linear-gradient(to bottom, transparent 0%, rgba(253,248,242,0.20) 55%, rgba(253,248,242,0.44) 100%);
-}
-/* Gallery page: first section is #fdf0d0 (warm cream) */
-.page-gallery .page-banner::after {
-  background: linear-gradient(to bottom, transparent 0%, rgba(253,240,208,0.20) 55%, rgba(253,240,208,0.44) 100%);
-}
+/* First content sections — pure white, same as wall-bg.png's white bottom zone */
+.about-page-section { background: #ffffff !important; }
+.timeline-section   { background: #ffffff !important; }
+.privacy-section    { background: #ffffff !important; }
 
 /* ══════════════ RESPONSIVE ══════════════ */
 

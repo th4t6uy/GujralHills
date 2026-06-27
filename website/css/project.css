@@ -30,33 +30,43 @@
 }
 
 /* ══════════════ JABALPUR INTRO ══════════════ */
-.jabalpur-intro {
+/* ── Jabalpur mural wrapper — real <img> so it occupies natural height ── */
+.jabalpur-mural-wrap {
   position: relative;
-  padding: 100px 0 110px;
-  background: url('../images/jabalpur-landmarks.png') center center / cover no-repeat;
+  line-height: 0;          /* kills phantom gap below inline img */
   overflow: hidden;
 }
-.jabalpur-bg-overlay {
+.jabalpur-mural-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* Thin dark fade at top blends with the hero's dark bottom */
+.jabalpur-top-fade {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg,
-    rgba(27,9,4,0.78) 0%,
-    rgba(27,9,4,0.60) 50%,
-    rgba(27,9,4,0.40) 100%);
+  top: 0; left: 0; right: 0;
+  height: 18%;
+  background: linear-gradient(to bottom, #1B0904 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Jabalpur text — solid section, guaranteed below the mural ── */
+.jabalpur-text-section {
+  background: #fdf8f2;
+  padding: 64px 0 72px;
 }
 .jabalpur-text-wrap {
-  position: relative;
-  z-index: 2;
-  max-width: 680px;
+  margin-top: 24px;
 }
 .jabalpur-text-wrap p {
-  color: rgba(255,255,255,0.82);
+  color: #2a1208;
   font-size: 15.5px;
   line-height: 1.85;
   margin-bottom: 18px;
 }
 .jabalpur-text-wrap em { font-style: italic; color: var(--gold); }
-.jabalpur-text-wrap strong { color: #fff; font-weight: 600; }
+.jabalpur-text-wrap strong { color: var(--dark); font-weight: 600; }
 .jabalpur-img-badge {
   position: absolute;
   bottom: 20px;

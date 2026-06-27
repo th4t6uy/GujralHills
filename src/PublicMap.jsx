@@ -162,7 +162,7 @@ export default function PublicMap() {
   const totalCount = PLOT_POSITIONS.length;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#fff', fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: '#f1f5f9', fontFamily: "'DM Sans', sans-serif" }}>
       {/* Compact toggle bar only */}
       <div style={{ background: '#fff', borderBottom: '1px solid #e5e7eb', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', position: 'sticky', top: 0, zIndex: 50 }}>
         <button onClick={() => setFilter('all')}
@@ -192,10 +192,7 @@ export default function PublicMap() {
       ) : (
         <div style={{ overflowX: 'auto', padding: '8px 0' }}>
           <div style={{ position: 'relative', width: 800, height: 450, background: 'transparent', margin: '0 auto', overflow: 'hidden' }}>
-            <picture style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-              <source srcSet="/site-plan.webp" type="image/webp" />
-              <img src="/site-plan.png" alt="Site Plan" style={{ width: '100%', height: '100%', objectFit: 'fill', display: 'block', pointerEvents: 'none', userSelect: 'none' }} />
-            </picture>
+            <img src="/site-plan.png" alt="Site Plan" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'fill', display: 'block', pointerEvents: 'none', userSelect: 'none' }} />
             {PLOT_POSITIONS.filter(p => filter === 'all' || (plots[p.id] || 'available') === filter).map(p => {
               const status = plots[p.id] || 'available';
               const cfg = STATUS_CFG[status] || STATUS_CFG.available;
